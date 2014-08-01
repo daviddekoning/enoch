@@ -1,0 +1,7 @@
+*~
+*.o
+sdof-step
+sdof-sine
+sdof-nonlin
+sdof-nleq
+2dof-nl
