@@ -29,36 +29,25 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="intro" class="anchor" href="#intro"></a>Introduction</h3>
+<p>Enoch is an object-oriented framework written in C++. It provides an application program interface (API) that can be used within other programs to represent and analyze finite element models. There is no user interface built into Enoch—it is up to the application programmer to gather data from users and pass it on to the Enoch code.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>A structural model consists of an array of Node objects and an array of Element objects. The Node objects store position, displacement, velocity, acceleration and mass values for an arbitrary number of degrees of freedom. The Element class is associated with a set of Node classes and defines an interface for getting an element’s stiffness matrix.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>A structural model is passed to an Enoch object that performs a Newmark-Beta Time History Analysis. Loads are specified for each degree of freedom at each time step, allowing arbitrary, complex load conditions. The damping matrix is generated using Rayleigh’s model of damping.</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>If all the elements are linear, the stiffness and damping matrices are generated at the beginning of the analysis and remain constant throughout. Structural models incorporating non-linear elements are included in the analysis by updating the global stiffness matrix at each time step. The linear elements are assembled into a global linear stiffness matrix, which remains constant throughout the time-history analysis. At each time step, the tangent stiffness matrices of each nonlinear element are acquired through the interface defined in the Element class.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>Non-linear elements are added by creating a new class derived from the Element class. When an Enoch object requests the element’s stiffness matrix, any computation to generate the tangent stiffness matrix may be performed.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>The abstraction of elements allows many different elements, both linear and non-linear, to be included in the same analysis. Since the time-history analysis interacts with each element through the same interface, new elements can be developed without changing the analysis code. Using the same interface, it is also possible to develop a new analysis module that uses the existing elements.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<h3>References</h3>
+<a name="references" class="anchor" href="#references"></a>
+<ul><li><a href="ref/1171-report.pdf">Program overview</a></li>
+<li><a href="ref/enoch-paper.pdf">Overview paper</a></li>
+<li><a href="ref/enoch-presentation.pdf">Enoch presentation slides</a></li>
+</ul>
         </section>
 
         <aside id="sidebar">
