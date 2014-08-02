@@ -1,5 +1,7 @@
 # Enoch
 
+Visit the [Enoch project page](http://daviddekoning.github.io/enoch) for more technical details of the implimentation.
+
 ## Introduction
 
 Enoch is an object-oriented framework written in C++.  It provides an application program interface (API) that can be used within other programs to represent and analyze finite element models.  There is no user interface built into Enoch—it is up to the application programmer to gather data from users and pass it on to the Enoch code.
